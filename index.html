@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEMS AI | Causal Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --kems-cyan: #00E5FF;
+            --kems-navy-deep: #000D1A;
+            --kems-blue-gradient: linear-gradient(180deg, #001B2E 0%, #000D1A 100%);
+        }
+
+        body {
+            background: var(--kems-navy-deep);
+            font-family: 'Inter', sans-serif;
+            color: #F1F5F9;
+            /* High contrast Slate-100 */
+        }
+
+        .text-cyan-brand {
+            color: var(--kems-cyan);
+        }
+
+        .bg-cyan-brand {
+            background-color: var(--kems-cyan);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 229, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--kems-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.1);
+        }
+
+        /* Improved Readability for Small Text */
+        p,
+        span,
+        li {
+            color: #CBD5E1;
+            /* Slate-300 for soft but clear reading */
+            line-height: 1.6;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #FFFFFF, #00E5FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* This ensures the content never overflows the height of any laptop screen */
+        .hero-fullscreen {
+            min-height: 90vh;
+            /* New: Section ends slightly before the bottom of the screen */
+            display: flex;
+            overflow-x: hidden;
+            flex-direction: column;
+            justify-content: center;
+            /* Centers content vertically */
+            padding-top: 80px;
+            /* Accounts for the fixed nav height */
+        }
+
+        /* Scaling the image for smaller laptop screens */
+        .hero-img-container img {
+            max-height: 65vh;
+            /* Limits image height so it doesn't push text down */
+            width: auto;
+            margin-left: auto;
+        }
+
+        /* Subtle Gradient Fade at the bottom to draw the eye down */
+        #home::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15vh;
+            background: linear-gradient(to top, var(--kems-navy) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero-fullscreen {
+                height: auto;
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+
+            .hero-img-container img {
+                max-height: 40vh;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="fixed w-full z-50 bg-[#000D1A]/95 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-1.5 flex justify-between items-center">
+            <a href="#home" class="transition-transform hover:scale-105">
+                <img src="KEMSDark.jpg" alt="KEMS Logo" class="h-20 w-auto object-contain">
+            </a>
+            <div class="hidden md:flex space-x-10 items-center font-bold uppercase tracking-widest text-xs">
+                <a href="#home" class="hover:text-cyan-400 transition">Home</a>
+                <a href="#about" class="hover:text-cyan-400 transition">About Us</a>
+                <a href="#contact" class="hover:text-cyan-400 transition">Contact Us</a>
+                <a href="#demo"
+                    class="bg-cyan-brand text-black px-6 py-2.5 rounded-full hover:shadow-[0_0_15px_rgba(0,229,255,0.5)] transition">Book
+                    Demo</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-fullscreen relative px-8">
+        <div
+            class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-500/10 via-transparent to-transparent -z-10">
+        </div>
+        <div class="max-w-7xl mx-auto grid grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div class="animate__animated animate__fadeInLeft">
+                <h1 class="text-4xl md:text-5xl lg:text-7xl font-black mb-4 leading-tight text-center lg:text-left">
+                    Causal Intelligence <br><span class="gradient-text">for Tech Ops</span>
+                </h1>
+                <p class="text-base lg:text-lg mb-6 max-w-md mx-auto lg:mx-0 opacity-90 text-center lg:text-left">
+                    Unify fragmented data into a single operational model. Transform observability into actionable
+                    causality.
+                </p>
+                <div class="flex space-x-4">
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"> </div>
+                    <a href="#demo"
+                        class="bg-cyan-brand text-black px-10 py-4 rounded-xl font-black hover:scale-105 transition">GET
+                        STARTED</a>
+                    <a href="#about"
+                        class="border border-white/20 px-10 py-4 rounded-xl font-black hover:bg-white/5 transition">LEARN
+                        MORE</a>
+                </div>
+            </div>
+            <div
+                class="animate__animated animate__zoomIn hero-img-container flex justify-center lg:justify-end order-first lg:order-last">
+                <img src="Homescreen.png" alt="Cyber Intelligence" class="rounded-3xl shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-8 bg-white/[0.03] border-t border-cyan-500/10">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+            <div class="reveal p-12 rounded-[40px] bg-cyan-500/5 border border-cyan-500/20">
+                <h3 class="text-2xl font-black mb-8 flex items-center gap-4">
+                    <span class="text-cyan-brand text-3xl">—</span> THE PROBLEM WE SOLVE
+                </h3>
+                <ul class="space-y-6 font-bold text-lg">
+                    <li class="flex gap-4 items-start">
+                        <i class="fa-solid fa-circle-nodes text-cyan-brand mt-1.5"></i>
+                        <span>Siloed Data Tools and Fragmented Logs</span>
+                    </li>
+                    <li class="flex gap-4 items-start">
+                        <i class="fa-solid fa-circle-nodes text-cyan-brand mt-1.5"></i>
+                        <span>Distributed and Inconsistent Human Knowledge</span>
+                    </li>
+                    <li class="flex gap-4 items-start">
+                        <i class="fa-solid fa-circle-nodes text-cyan-brand mt-1.5"></i>
+                        <span>Manual, Error-Prone Root Cause Discovery</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="reveal p-10 rounded-3xl bg-cyan-500/5 border border-cyan-500/20">
+                <h3 class="text-3xl font-bold mb-8 flex items-center">
+                    <i class="fa-solid fa-lightbulb mr-4 text-cyan-brand"></i> The Solution
+                </h3>
+                <p class="text-lg mb-6">Evolve from basic observability to <strong>Causal Intelligence</strong> with a
+                    unified dependency model overlayed with live signals.</p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="p-6 glass-card rounded-2xl text-center">
+                        <span class="block text-4xl font-black text-cyan-brand mb-1">70%</span>
+                        <span class="text-[10px] uppercase font-bold text-slate-400">MTTR Reduction</span>
+                    </div>
+                    <div class="p-6 glass-card rounded-2xl text-center">
+                        <span class="block text-4xl font-black text-cyan-brand mb-1">100%</span>
+                        <span class="text-[10px] uppercase font-bold text-slate-400">Visibility</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl font-black mb-4">Platform Capabilities</h2>
+                <div class="w-24 h-1.5 bg-cyan-brand mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-10 rounded-[32px] reveal">
+                    <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-magnifying-glass-chart text-cyan-brand text-3xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Root Cause Analysis</h4>
+                    <p class="text-sm">Evidence-backed reasoning with confidence scoring. Moves beyond pattern matching
+                        to explainable causality.</p>
+                </div>
+                <div class="glass-card p-10 rounded-[32px] reveal">
+                    <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-bullseye text-cyan-brand text-3xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Impact Analysis</h4>
+                    <p class="text-sm">Real-time blast radius visualization. Identify upstream and downstream dependency
+                        paths instantly.</p>
+                </div>
+                <div class="glass-card p-10 rounded-[32px] reveal">
+                    <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-comment-nodes text-cyan-brand absolute top-3 left-3 opacity-50"></i>
+                        <i class="fa-solid fa-wand-magic-sparkles text-cyan-brand trelative z-10"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">ASK AI</h4>
+                    <p class="text-sm">Natural language interface to query root cause, impact, and system dependencies
+                        via LLM integration.</p>
+                </div>
+                <div class="glass-card p-10 rounded-[32px] reveal">
+                    <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-chart-line text-cyan-brand text-3xl"></i>
+                        <i class="fa-solid fa-briefcase text-cyan-brand text-4xl mb-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Business Service Intel</h4>
+                    <p class="text-sm">Mapping technical failures directly to business outcomes and critical customer
+                        service levels.</p>
+                </div>
+                <div class="glass-card p-10 rounded-[32px] reveal">
+                    <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-database text-cyan-brand text-3xl"></i>
+                        <i class="fa-solid fa-check-double text-cyan-brand text-4xl mb-6"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Data Quality Intel</h4>
+                    <p class="text-sm">Continuous validation of CMDB, logs, and incident data to ensure a high-fidelity
+                        operational model.</p>
+                </div>
+                <div class="glass-card p-10 rounded-[32px] reveal">
+                    <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-microchip text-cyan-brand text-3xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Unified Model</h4>
+                    <p class="text-sm">A live, synchronized digital twin of your technology ecosystem combining topology
+                        and telemetry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-cyan-brand">
+        <div class="max-w-5xl mx-auto px-8 text-center">
+            <h2 class="text-4xl font-black text-black mb-4 italic">Zero-Disruption Integration</h2>
+            <p class="text-black font-bold text-xl opacity-80">KEMS sits on top of your existing operational tools,
+                adding intelligence without disrupting your stack</p>
+        </div>
+    </section>
+
+    <section id="demo" class="py-32 px-8">
+        <div class="max-w-4xl mx-auto glass-card rounded-[40px] overflow-hidden reveal">
+            <div class="flex flex-col md:grid md:grid-cols-5">
+                <div class="md:col-span-2 bg-white/5 p-12 flex flex-col justify-center border-r border-white/10">
+                    <h3 class="text-3xl font-bold mb-6">Ready to Transform?</h3>
+                    <p class="text-slate-400 text-sm mb-8">Select your inquiry type and our team will be in touch within
+                        24 hours.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 text-cyan-brand">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span class="text-xs font-bold uppercase">sales@kemsai.co.uk</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-slate-400">
+                            <i class="fa-solid fa-headset"></i>
+                            <span class="text-xs font-bold uppercase">support@kemsai.co.uk</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="contact" class="md:col-span-3 p-12">
+                    <form id="kemsForm" class="space-y-5">
+                        <div>
+                            <label
+                                class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block mb-2">Request
+                                Type</label>
+                            <select id="formType"
+                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500 text-white">
+                                <option value="sales" class="bg-slate-900">Book a Demo</option>
+                                <option value="support" class="bg-slate-900">Technical Support</option>
+                                <option value="sales" class="bg-slate-900">Send a Query</option>
+                            </select>
+                        </div>
+                        <input type="text" placeholder="Full Name" required
+                            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500">
+                        <input type="email" placeholder="Work Email" required
+                            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500">
+                        <textarea placeholder="Tell us about your environment..." rows="4"
+                            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500"></textarea>
+                        <button type="submit"
+                            class="w-full bg-cyan-brand text-black font-black py-4 rounded-xl hover:shadow-cyan-500/20 shadow-xl transition">SUBMIT
+                            REQUEST</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase">© 2026 KEMS Artificial Intelligence.
+            London, UK.</p>
+    </footer>
+
+    <script>
+        // Form Routing
+        document.getElementById('kemsForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const type = document.getElementById('formType').value;
+            const target = (type === 'support') ? 'support@kemsai.co.uk' : 'sales@kemsai.co.uk';
+            window.location.href = `mailto:${target}?subject=KEMS Website Inquiry: ${type}`;
+        });
+
+        // Scroll Reveal
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+
+</html>
