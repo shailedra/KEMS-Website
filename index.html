@@ -87,7 +87,9 @@
             max-height: 65vh;
             /* Limits image height so it doesn't push text down */
             width: auto;
+            max-width: 100%;
             margin-left: auto;
+            object-fit: contain;
         }
 
         /* Subtle Gradient Fade at the bottom to draw the eye down */
@@ -114,6 +116,10 @@
                 margin: 0 auto;
             }
         }
+
+        iframe {
+            background: transparent;
+        }
     </style>
 </head>
 
@@ -127,8 +133,8 @@
             <div class="hidden md:flex space-x-10 items-center font-bold uppercase tracking-widest text-xs">
                 <a href="#home" class="hover:text-cyan-400 transition">Home</a>
                 <a href="#about" class="hover:text-cyan-400 transition">About Us</a>
-                <a href="#contact" class="hover:text-cyan-400 transition">Contact Us</a>
-                <a href="#demo"
+                <a href="#" onclick="openModal(); return false;" class="hover:text-cyan-400 transition">Contact Us</a>
+                <a href="#" onclick="openModal(); return false;"
                     class="bg-cyan-brand text-black px-6 py-2.5 rounded-full hover:shadow-[0_0_15px_rgba(0,229,255,0.5)] transition">Book
                     Demo</a>
             </div>
@@ -139,10 +145,12 @@
         <div
             class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-500/10 via-transparent to-transparent -z-10">
         </div>
-        <div class="max-w-7xl mx-auto grid grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="max-w-7xl mx-auto grid grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
             <div class="animate__animated animate__fadeInLeft">
                 <h1 class="text-4xl md:text-5xl lg:text-7xl font-black mb-4 leading-tight text-center lg:text-left">
-                    Causal Intelligence <br><span class="gradient-text">for Tech Ops</span>
+                    <span class="gradient-text" style="white-space: nowrap;">Causal Intelligence</span><br><span <span
+                        class="text-2xl md:text-3xl lg:text-4xl" style="display:block; margin: 0px 0;">for</span>
+                    <span class="gradient-text">Tech Ops</span>
                 </h1>
                 <p class="text-base lg:text-lg mb-6 max-w-md mx-auto lg:mx-0 opacity-90 text-center lg:text-left">
                     Unify fragmented data into a single operational model. Transform observability into actionable
@@ -150,7 +158,7 @@
                 </p>
                 <div class="flex space-x-4">
                     <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"> </div>
-                    <a href="#demo"
+                    <a href="#" onclick="openModal(); return false;"
                         class="bg-cyan-brand text-black px-10 py-4 rounded-xl font-black hover:scale-105 transition">GET
                         STARTED</a>
                     <a href="#about"
@@ -271,7 +279,8 @@
 
     <section class="py-20 bg-cyan-brand">
         <div class="max-w-5xl mx-auto px-8 text-center">
-            <h2 class="text-4xl font-black text-black mb-4 italic">Zero-Disruption Integration</h2>
+            <h2 class="text-4xl font-black text-black mb-4 italic"><span style="white-space: nowrap;">Zero-Disruption
+                    Integration</span></h2>
             <p class="text-black font-bold text-xl opacity-80">KEMS sits on top of your existing operational tools,
                 adding intelligence without disrupting your stack</p>
         </div>
@@ -295,62 +304,108 @@
                         </div>
                     </div>
                 </div>
-                <div id="contact" class="md:col-span-3 p-12">
-                    <form id="kemsForm" class="space-y-5">
-                        <div>
-                            <label
-                                class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block mb-2">Request
-                                Type</label>
-                            <select id="formType"
-                                class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500 text-white">
-                                <option value="sales" class="bg-slate-900">Book a Demo</option>
-                                <option value="support" class="bg-slate-900">Technical Support</option>
-                                <option value="sales" class="bg-slate-900">Send a Query</option>
-                            </select>
-                        </div>
-                        <input type="text" placeholder="Full Name" required
-                            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500">
-                        <input type="email" placeholder="Work Email" required
-                            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500">
-                        <textarea placeholder="Tell us about your environment..." rows="4"
-                            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 outline-none focus:border-cyan-500"></textarea>
-                        <button type="submit"
-                            class="w-full bg-cyan-brand text-black font-black py-4 rounded-xl hover:shadow-cyan-500/20 shadow-xl transition">SUBMIT
-                            REQUEST</button>
-                    </form>
+                <div id="contact" class="md:col-span-3 p-12 flex items-center justify-center">
+                    <button onclick="openModal()"
+                        class="bg-cyan-brand text-black px-10 py-4 rounded-xl font-black hover:scale-105 transition">
+                        Open Contact Form
+                    </button>
                 </div>
             </div>
-        </div>
     </section>
 
     <footer class="py-12 border-t border-white/5 text-center">
         <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase">© 2026 KEMS Artificial Intelligence.
             London, UK.</p>
     </footer>
-
+    <!-- Contact Modal -->
+    <div id="contactModal"
+        style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.8); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+        <div
+            style="position:relative; width:90%; max-width:520px; background:#000D1A; border:1px solid rgba(0,229,255,0.2); border-radius:24px; overflow:hidden;">
+            <button onclick="closeModal()"
+                style="position:absolute; top:12px; right:16px; z-index:10; background:transparent; border:none; color:#00E5FF; font-size:22px; cursor:pointer;">✕</button>
+            <iframe id="ziframe_modal" aria-label="Contact Us"
+                src="https://forms.zohopublic.eu/zohoadminkem1/form/ContactUs/formperma/xYEETpqH-7oqmK00g8P0jadAkj8wiELdaZoBUHPKCTw"
+                frameborder="0" style="width:100%; height:600px; display:block; border:none;">
+            </iframe>
+        </div>
+    </div>
+    <!-- Thank You Message (shown on main page after submission) -->
+    <div id="thankYouBanner"
+        style="display:none; position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+        <div
+            style="text-align:center; padding:48px 40px; background:#000D1A; border:1px solid rgba(0,229,255,0.3); border-radius:24px; max-width:460px; width:90%;">
+            <div style="font-size:48px; margin-bottom:16px;">✅</div>
+            <h2 style="color:#00E5FF; font-size:26px; font-weight:900; margin-bottom:12px;">Message Received!</h2>
+            <p style="color:#CBD5E1; font-size:15px; line-height:1.7; margin-bottom:28px;">Thank you for reaching out to
+                KEMS AI. Our team will be in touch within 24 hours.</p>
+            <button onclick="closeThankyou()"
+                style="background:#00E5FF; color:#000D1A; border:none; padding:12px 32px; border-radius:12px; font-weight:900; font-size:15px; cursor:pointer;">
+                CLOSE
+            </button>
+        </div>
+    </div>
     <script>
-        // Form Routing
-        document.getElementById('kemsForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const type = document.getElementById('formType').value;
-            const target = (type === 'support') ? 'support@kemsai.co.uk' : 'sales@kemsai.co.uk';
-            window.location.href = `mailto:${target}?subject=KEMS Website Inquiry: ${type}`;
-        });
-
-        // Scroll Reveal
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
+
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
+
                 if (elementTop < windowHeight - 100) {
                     reveals[i].classList.add("active");
                 }
             }
         }
+
+        // Run on scroll
         window.addEventListener("scroll", reveal);
+
+        // Run once on page load
         reveal();
     </script>
+    <script>
+        function openModal() {
+            document.getElementById("contactModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("contactModal").style.display = "none";
+        }
+
+        function showThankyou() {
+            document.getElementById("thankYouBanner").style.display = "flex";
+        }
+
+        function closeThankyou() {
+            document.getElementById("thankYouBanner").style.display = "none";
+        }
+
+        document.getElementById("contactModal").addEventListener("click", function (e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Zoho sends an object not a plain string - check all possible formats
+        window.addEventListener("message", function (event) {
+            console.log("Zoho message received:", JSON.stringify(event.data));
+            try {
+
+                var data = event.data;
+                var isCompleted = false;
+                if (typeof data === "string") {
+                    isCompleted = data.indexOf("zf-completed") > -1;
+                } else if (typeof data === "object" && data !== null) {
+                    isCompleted = JSON.stringify(data).indexOf("zf-completed") > -1;
+                }
+                if (isCompleted) {
+                    closeModal();
+                    showThankyou();
+                }
+            } catch (e) { }
+        });
+    </script>
+
 </body>
 
 </html>
