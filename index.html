@@ -92,6 +92,16 @@
             object-fit: contain;
         }
 
+        .banner-text {
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .banner-text {
+                white-space: normal;
+            }
+        }
+
         /* Subtle Gradient Fade at the bottom to draw the eye down */
         #home::after {
             content: "";
@@ -281,11 +291,9 @@
         <div class="max-w-5xl mx-auto px-8 text-center">
             <h2 class="text-4xl font-black text-black mb-4 italic">Zero-Disruption
                 Integration</span></h2>
-            <p class="text-black font-bold text-xl opacity-80"><span style="white-space: nowrap;color: #000000;">KEMS
-                    sits on top of
-                    your existing
-                    operational tools,
-                    adding intelligence without disrupting your stack</span></p>
+            <p class="text-black font-bold text-xl opacity-80"><span class="banner-text" style="color: #000000;">KEMS
+                    sits on top of your existing operational tools, adding intelligence without disrupting your
+                    stack</span></p>
         </div>
     </section>
 
