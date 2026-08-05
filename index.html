@@ -4,435 +4,956 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KEMS AI | Causal Intelligence</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>KEMS AI | Causal Intelligence for Enterprise Operations</title>
+    <meta name="description"
+        content="KEMS unifies fragmented operational data into a single causal model — turning observability into explainable root cause, blast radius, and what-if simulation.">
+    <meta name="theme-color" content="#000c1a">
+    <link rel="icon" href="KEMSLogo.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="KEMS AI | Causal Intelligence">
+    <meta property="og:description"
+        content="Unify fragmented data into a single operational model. Transform observability into actionable causality.">
+    <meta property="og:url" content="https://www.kemsai.co.uk">
+    <meta property="og:image" content="https://www.kemsai.co.uk/Homescreen.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#000c1a',
+                        brand: '#0ce4ff',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
     <style>
         :root {
-            --kems-cyan: #00E5FF;
-            --kems-navy-deep: #000D1A;
-            --kems-blue-gradient: linear-gradient(180deg, #001B2E 0%, #000D1A 100%);
+            --bg: #000c1a;
+            --accent: #0ce4ff;
+
+            /* Tonal surfaces derived from the navy, so nothing reads as pure gray */
+            --surface: rgba(255, 255, 255, 0.025);
+            --surface-hover: rgba(255, 255, 255, 0.045);
+            --border: rgba(255, 255, 255, 0.09);
+            --border-strong: rgba(255, 255, 255, 0.16);
+
+            --text: #e8eef5;
+            --muted: #8ba0b4;
+            --faint: #6b8299;
+
+            --radius-card: 16px;
+            --radius-btn: 10px;
+        }
+
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 120px;
         }
 
         body {
-            background: var(--kems-navy-deep);
-            font-family: 'Inter', sans-serif;
-            color: #F1F5F9;
-            /* High contrast Slate-100 */
+            background: var(--bg);
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            color: var(--text);
+            overflow-x: hidden;
         }
 
-        .text-cyan-brand {
-            color: var(--kems-cyan);
+        p {
+            color: var(--muted);
+            line-height: 1.65;
         }
 
-        .bg-cyan-brand {
-            background-color: var(--kems-cyan);
+        /* ---- Type scale: medium weight + tight tracking, not black ---- */
+        .display {
+            font-weight: 600;
+            letter-spacing: -0.035em;
+            line-height: 1.04;
+            font-size: clamp(2.375rem, 7vw, 4.75rem);
+            text-wrap: balance;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 229, 255, 0.15);
-            transition: all 0.3s ease;
+        .h2 {
+            font-weight: 600;
+            letter-spacing: -0.028em;
+            line-height: 1.12;
+            font-size: clamp(1.875rem, 4vw, 2.75rem);
+            text-wrap: balance;
         }
 
-        .glass-card:hover {
-            border-color: var(--kems-cyan);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.1);
+        .h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
-        /* Improved Readability for Small Text */
-        p,
-        span,
-        li {
-            color: #CBD5E1;
-            /* Slate-300 for soft but clear reading */
-            line-height: 1.6;
+        .accent-text {
+            color: var(--accent);
         }
 
+        /* Small uppercase section label, borrowed from the reference sites */
+        .eyebrow {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--faint);
+        }
+
+        /* ---- Buttons ---- */
+        .btn {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-height: 44px;
+            padding: 0.75rem 1.375rem;
+            border-radius: var(--radius-btn);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            cursor: pointer;
+            transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: -80% -35%;
+            pointer-events: none;
+            background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.38) 49%, transparent 60%);
+            transform: translateX(-75%) rotate(5deg);
+            transition: transform .62s cubic-bezier(.2, .75, .25, 1);
+        }
+
+        .btn:hover::after,
+        .btn:focus-visible::after {
+            transform: translateX(75%) rotate(5deg);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #001018;
+            font-weight: 600;
+            border: 1px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background: #55eeff;
+            border-color: #55eeff;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border-strong);
+        }
+
+        .btn-ghost:hover {
+            background: var(--surface-hover);
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* ---- Surfaces: hairline borders, no glassmorphism glow ---- */
+        .card {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            transition: background-color .25s ease, border-color .25s ease, transform .3s ease, box-shadow .3s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0;
+            background: radial-gradient(260px circle at var(--shine-x, 50%) var(--shine-y, 50%), rgba(12, 228, 255, 0.16), transparent 62%);
+            transition: opacity .22s ease;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -45%;
+            left: -85%;
+            width: 48%;
+            height: 190%;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.11), transparent);
+            transform: rotate(16deg);
+        }
+
+        .card:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-strong);
+            transform: translateY(-3px);
+            box-shadow: 0 18px 55px rgba(0, 8, 20, 0.28);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+            animation: cardFlash .72s cubic-bezier(.2, .75, .25, 1) both;
+        }
+
+        @keyframes cardFlash {
+            from { left: -85%; }
+            to { left: 145%; }
+        }
+
+        .icon-tile {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            background: rgba(12, 228, 255, 0.08);
+            border: 1px solid rgba(12, 228, 255, 0.14);
+            color: var(--accent);
+            font-size: 0.9375rem;
+        }
+
+        /* ---- Faint grid backdrop ---- */
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 64px 64px;
+            -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 20%, transparent 75%);
+            mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 20%, transparent 75%);
+        }
+
+        /* ---- Living causal field ----
+           A lightweight canvas turns the hero background into a quiet map of
+           changing dependencies. It stays decorative and never blocks input. */
+        .causal-field {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.72;
+            -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 66%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 0%, #000 66%, transparent 100%);
+        }
+
+        .glow-bg {
+            position: absolute;
+            top: -18%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1100px, 130%);
+            height: 620px;
+            z-index: -1;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(12, 228, 255, 0.11) 0%, transparent 65%);
+        }
+
+        /* Supporting hero mark — deliberately small. It's a decorative
+           illustration, not a product screenshot, so it stays subordinate
+           to the headline rather than competing with it. */
+        .hero-visual {
+            width: clamp(180px, 30vw, 260px);
+            margin: 3rem auto 0;
+        }
+
+        .hero-visual img {
+            display: block;
+            width: 100%;
+            height: auto;
+            opacity: 0.9;
+            /* dissolve the square edges into the page */
+            -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 45%, #000 42%, transparent 78%);
+            mask-image: radial-gradient(ellipse 72% 72% at 50% 45%, #000 42%, transparent 78%);
+        }
+
+        /* ---- Reveal on scroll ---- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transform: translateY(18px);
+            filter: blur(3px);
+            transition: opacity .75s cubic-bezier(.2, .7, .3, 1), transform .75s cubic-bezier(.2, .7, .3, 1), filter .75s ease;
+            will-change: opacity, transform;
+        }
+
+        .reveal[data-motion="left"] {
+            transform: translate3d(-44px, 12px, 0) rotate(-1deg);
+        }
+
+        .reveal[data-motion="right"] {
+            transform: translate3d(44px, 12px, 0) rotate(1deg);
+        }
+
+        .reveal[data-motion="scale"] {
+            transform: scale(.9) translateY(20px);
         }
 
         .reveal.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
+            filter: none;
         }
 
-        .gradient-text {
-            background: linear-gradient(to right, #FFFFFF, #00E5FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero-in {
+            animation: heroIn .9s cubic-bezier(.2, .7, .3, 1) both;
         }
 
-        /* This ensures the content never overflows the height of any laptop screen */
-        .hero-fullscreen {
-            min-height: 90vh;
-            /* New: Section ends slightly before the bottom of the screen */
-            display: flex;
-            overflow-x: hidden;
-            flex-direction: column;
-            justify-content: center;
-            /* Centers content vertically */
-            padding-top: 80px;
-            /* Accounts for the fixed nav height */
-        }
+        @keyframes heroIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
 
-        /* Scaling the image for smaller laptop screens */
-        .hero-img-container img {
-            max-height: 65vh;
-            /* Limits image height so it doesn't push text down */
-            width: auto;
-            max-width: 100%;
-            margin-left: auto;
-            object-fit: contain;
-        }
-
-        .banner-text {
-            white-space: nowrap;
-        }
-
-        @media (max-width: 768px) {
-            .banner-text {
-                white-space: normal;
+            to {
+                opacity: 1;
+                transform: none;
             }
         }
 
-        /* Subtle Gradient Fade at the bottom to draw the eye down */
-        #home::after {
-            content: "";
+        /* ---- Focus visibility (was removed by the old design) ---- */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        .skip-link {
             position: absolute;
-            bottom: 0;
+            left: -9999px;
+            top: 0;
+            z-index: 100;
+            background: var(--accent);
+            color: #001018;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
             left: 0;
-            width: 100%;
-            height: 15vh;
-            background: linear-gradient(to top, var(--kems-navy) 0%, transparent 100%);
-            pointer-events: none;
         }
 
-        @media (max-width: 768px) {
-            .hero-fullscreen {
-                height: auto;
-                padding-top: 100px;
-                padding-bottom: 50px;
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
             }
 
-            .hero-img-container img {
-                max-height: 40vh;
-                margin: 0 auto;
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
             }
-        }
 
-        iframe {
-            background: transparent;
+            .reveal {
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
+
+            .causal-field {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
 
-    <nav class="fixed w-full z-50 bg-[#000D1A]/95 border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-1.5 flex justify-between items-center">
-            <a href="#home" class="transition-transform hover:scale-105">
-                <img src="KEMSDark.jpg" alt="KEMS Logo" class="h-20 w-auto object-contain">
-            </a>
-            <div class="hidden md:flex space-x-10 items-center font-bold uppercase tracking-widest text-xs">
-                <a href="#home" class="hover:text-cyan-400 transition">Home</a>
-                <a href="#about" class="hover:text-cyan-400 transition">About Us</a>
-                <a href="#" onclick="openModal(); return false;" class="hover:text-cyan-400 transition">Contact Us</a>
-                <a href="#" onclick="openModal(); return false;"
-                    class="bg-cyan-brand text-black px-6 py-2.5 rounded-full hover:shadow-[0_0_15px_rgba(0,229,255,0.5)] transition">Book
-                    Demo</a>
-            </div>
-        </div>
-    </nav>
+    <!-- ===================== NAV : floating pill ===================== -->
+    <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+        <nav class="max-w-6xl mx-auto rounded-2xl border border-white/10 bg-[#000c1a]/80 backdrop-blur-xl"
+            aria-label="Primary">
+            <div class="flex items-center justify-between gap-4 pl-4 pr-3 py-2.5">
+                <a href="#home" class="flex items-center shrink-0" aria-label="KEMS AI — home">
+                    <img src="KEMSLogo.png" alt="KEMS AI" width="440" height="151"
+                        class="h-9 w-auto object-contain">
+                </a>
 
-    <section id="home" class="hero-fullscreen relative px-8">
-        <div
-            class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-500/10 via-transparent to-transparent -z-10">
-        </div>
-        <div class="max-w-7xl mx-auto grid grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
-            <div class="animate__animated animate__fadeInLeft">
-                <h1 class="text-4xl md:text-5xl lg:text-7xl font-black mb-4 leading-tight text-center lg:text-left">
-                    <span class="text-2xl md:text-2xl lg:text-4xl" style="display:block; margin: 0px 0;">Enabling</span>
-                    <span class="gradient-text" style="white-space: nowrap;">Causal Intelligence</span><br>
-
-                </h1>
-                <p class="text-base lg:text-lg mb-6 max-w-md mx-auto lg:mx-0 opacity-90 text-center lg:text-left">
-                    Unify fragmented data into a single operational model. Transform observability into actionable
-                    causality.
-                </p>
-                <div class="flex space-x-4">
-                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"> </div>
-                    <a href="#" onclick="openModal(); return false;"
-                        class="bg-cyan-brand text-black px-10 py-4 rounded-xl font-black hover:scale-105 transition">GET
-                        STARTED</a>
-                    <a href="#about"
-                        class="border border-white/20 px-10 py-4 rounded-xl font-black hover:bg-white/5 transition">LEARN
-                        MORE</a>
+                <div class="hidden md:flex items-center gap-8 text-[0.9rem] text-[#8ba0b4]">
+                    <a href="#home" class="hover:text-white transition-colors">Home</a>
+                    <a href="#about" class="hover:text-white transition-colors">About</a>
+                    <a href="#platform" class="hover:text-white transition-colors">Platform</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
                 </div>
-            </div>
-            <div
-                class="animate__animated animate__zoomIn hero-img-container flex justify-center lg:justify-end order-first lg:order-last">
-                <img src="Homescreen.png" alt="Cyber Intelligence" class="rounded-3xl shadow-2xl">
-            </div>
-        </div>
-    </section>
 
-    <section id="about" class="py-20 px-8 bg-white/[0.03] border-t border-cyan-500/10">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
-            <div class="reveal p-12 rounded-[40px] bg-cyan-500/5 border border-cyan-500/20">
-                <h3 class="text-2xl font-black mb-8 flex items-center gap-4">
-                    <span class="text-cyan-brand text-3xl">—</span> THE PROBLEM WE SOLVE
-                </h3>
-                <ul class="space-y-6 font-bold text-lg">
-                    <li class="flex gap-4 items-start">
-                        <i class="fa-solid fa-circle-nodes text-cyan-brand mt-1.5"></i>
-                        <span>Siloed Data Tools and Fragmented Logs</span>
-                    </li>
-                    <li class="flex gap-4 items-start">
-                        <i class="fa-solid fa-circle-nodes text-cyan-brand mt-1.5"></i>
-                        <span>Distributed and Inconsistent Human Knowledge</span>
-                    </li>
-                    <li class="flex gap-4 items-start">
-                        <i class="fa-solid fa-circle-nodes text-cyan-brand mt-1.5"></i>
-                        <span>Manual, Error-Prone Root Cause Discovery</span>
-                    </li>
-                    <li class="flex gap-4 items-start">
-                        <i class="fa-solid fa-circle-nodes text-cyan-brand mt-1.5"></i>
-                        <span>Reactive Tools with No Change Simulation</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="reveal p-10 rounded-3xl bg-cyan-500/5 border border-cyan-500/20">
-                <h3 class="text-3xl font-bold mb-8 flex items-center">
-                    <i class="fa-solid fa-lightbulb mr-4 text-cyan-brand"></i> The Solution
-                </h3>
-                <p class="text-lg mb-6">Evolve from basic observability to <strong>Causal Intelligence</strong> with a
-                    unified dependency model overlayed with live signals and continuous learning.</p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                    <div class="p-6 glass-card rounded-2xl text-center">
-                        <span class="block text-4xl font-black text-cyan-brand mb-1">70%</span>
-                        <span class="text-[10px] uppercase font-bold text-slate-400">MTTR Reduction</span>
-                    </div>
-                    <div class="p-6 glass-card rounded-2xl text-center">
-                        <span class="block text-4xl font-black text-cyan-brand mb-1">100%</span>
-                        <span class="text-[10px] uppercase font-bold text-slate-400">Visibility</span>
-                    </div>
+                <div class="hidden md:flex items-center gap-2">
+                    <button type="button" onclick="openModal()" class="btn btn-primary !py-2 !px-4 !text-sm">
+                        Book a demo
+                    </button>
                 </div>
-            </div>
-        </div>
-    </section>
 
-   <section class="py-32 px-8">
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20 reveal">
-            <h2 class="text-4xl font-black mb-4">Platform Capabilities</h2>
-            <div class="w-24 h-1.5 bg-cyan-brand mx-auto"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-6 gap-8">
-            <div class="glass-card p-10 rounded-[32px] reveal md:col-span-2">
-                <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-magnifying-glass-chart text-cyan-brand text-3xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-4">Root Cause Analysis</h4>
-                <p class="text-sm">Evidence-backed reasoning with confidence scoring. Moves beyond pattern matching
-                    to explainable causality.</p>
+                <!-- Mobile toggle (the old design had no mobile nav at all) -->
+                <button type="button" id="menuBtn" onclick="toggleMenu()" aria-expanded="false"
+                    aria-controls="mobileMenu" aria-label="Open menu"
+                    class="md:hidden grid place-items-center w-11 h-11 rounded-lg border border-white/15 text-white">
+                    <i class="fa-solid fa-bars" id="menuIcon"></i>
+                </button>
             </div>
 
-            <div class="glass-card p-10 rounded-[32px] reveal md:col-span-2">
-                <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-flask text-cyan-brand text-3xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-4">What-if Simulation</h4>
-                <p class="text-sm">Test how proposed changes, system failures, load shifts, or migrations would affect your technology environment before making them in production.</p>
-            </div>
-
-            <div class="glass-card p-10 rounded-[32px] reveal md:col-span-2">
-                <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-chart-line text-cyan-brand text-3xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-4">Predictive Operations</h4>
-                <p class="text-sm">Combine live system signals, operational thresholds, and dependency data to forecast potential failures and determine their blast radius.</p>
-            </div>
-
-            <div class="glass-card p-10 rounded-[32px] reveal md:col-span-2">
-                <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-bullseye text-cyan-brand text-3xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-4">Impact Analysis</h4>
-                <p class="text-sm">Real-time blast radius visualization. Identify upstream and downstream dependency
-                    paths instantly.</p>
-            </div>
-
-            <div class="glass-card p-10 rounded-[32px] reveal md:col-span-2">
-                <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-comment-nodes text-cyan-brand absolute top-3 left-3 opacity-50"></i>
-                    <i class="fa-solid fa-wand-magic-sparkles text-cyan-brand trelative z-10"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-4">ASK AI</h4>
-                <p class="text-sm">Natural language interface to query root cause, impact, and system dependencies
-                    via LLM integration.</p>
-            </div>
-
-            <div class="glass-card p-10 rounded-[32px] reveal md:col-span-2">
-                <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-chart-line text-cyan-brand text-3xl"></i>
-                    <i class="fa-solid fa-briefcase text-cyan-brand text-4xl mb-6"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-4">Business Service Intel</h4>
-                <p class="text-sm">Mapping technical failures directly to business outcomes and critical customer
-                    service levels.</p>
-            </div>
-
-            <div class="glass-card p-10 rounded-[32px] reveal md:col-span-2 md:col-start-2">
-                <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-database text-cyan-brand text-3xl"></i>
-                    <i class="fa-solid fa-check-double text-cyan-brand text-4xl mb-6"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-4">Data Quality Intel</h4>
-                <p class="text-sm">Continuous validation of CMDB, logs, and incident data to ensure a high-fidelity
-                    operational model.</p>
-            </div>
-
-            <div class="glass-card p-10 rounded-[32px] reveal md:col-span-2">
-                <div class="w-16 h-16 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6">
-                    <i class="fa-solid fa-microchip text-cyan-brand text-3xl"></i>
-                </div>
-                <h4 class="text-xl font-bold mb-4">Unified Model</h4>
-                <p class="text-sm">A live, synchronized digital twin of your technology ecosystem combining topology
-                    and telemetry.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <section class="py-20 bg-cyan-brand">
-        <div class="max-w-5xl mx-auto px-8 text-center">
-            <h2 class="text-4xl font-black text-black mb-4 italic">Zero-Disruption
-                Integration</span></h2>
-            <p class="text-black font-bold text-xl opacity-80"><span class="banner-text" style="color: #000000;">KEMS
-                    sits on top of your existing operational tools, adding intelligence without disrupting your
-                    stack</span></p>
-        </div>
-    </section>
-
-    <section id="demo" class="py-32 px-8">
-        <div class="max-w-4xl mx-auto glass-card rounded-[40px] overflow-hidden reveal">
-            <div class="flex flex-col md:grid md:grid-cols-5">
-                <div class="md:col-span-2 bg-white/5 p-12 flex flex-col justify-center border-r border-white/10">
-                    <h3 class="text-3xl font-bold mb-6">Ready to Transform?</h3>
-                    <p class="text-slate-400 text-sm mb-8">Select your inquiry type and our team will be in touch within
-                        24 hours.</p>
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-3 text-cyan-brand">
-                            <i class="fa-solid fa-envelope"></i>
-                            <span class="text-xs font-bold uppercase">sales@kemsai.co.uk</span>
-                        </div>
-                        <div class="flex items-center space-x-3 text-slate-400">
-                            <i class="fa-solid fa-headset"></i>
-                            <span class="text-xs font-bold uppercase">support@kemsai.co.uk</span>
-                        </div>
-                    </div>
-                </div>
-                <div id="contact" class="md:col-span-3 p-12 flex items-center justify-center">
-                    <button onclick="openModal()"
-                        class="bg-cyan-brand text-black px-10 py-4 rounded-xl font-black hover:scale-105 transition">
-                        Open Contact Form
+            <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 px-4 py-4">
+                <div class="flex flex-col gap-1 text-[0.95rem]">
+                    <a href="#home" onclick="closeMenu()" class="py-3 text-[#8ba0b4] hover:text-white transition-colors">Home</a>
+                    <a href="#about" onclick="closeMenu()" class="py-3 text-[#8ba0b4] hover:text-white transition-colors">About</a>
+                    <a href="#platform" onclick="closeMenu()" class="py-3 text-[#8ba0b4] hover:text-white transition-colors">Platform</a>
+                    <a href="#contact" onclick="closeMenu()" class="py-3 text-[#8ba0b4] hover:text-white transition-colors">Contact</a>
+                    <button type="button" onclick="closeMenu(); openModal();" class="btn btn-primary w-full mt-3">
+                        Book a demo
                     </button>
                 </div>
             </div>
-    </section>
+        </nav>
+    </header>
 
-    <footer class="py-12 border-t border-white/5 text-center">
-        <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase">© 2026 KEMS Artificial Intelligence.
-            London, UK.</p>
+    <main id="main">
+
+        <!-- ===================== HERO : centered ===================== -->
+        <section id="home" class="relative px-6 pt-40 pb-20 md:pt-48 md:pb-28 text-center overflow-hidden">
+            <div class="grid-bg"></div>
+            <div class="glow-bg"></div>
+            <canvas id="causalField" class="causal-field" aria-hidden="true"></canvas>
+
+            <div class="max-w-3xl mx-auto hero-in">
+                <h1 class="display mb-6">
+                    <span class="block">Enabling</span>
+                    <span class="accent-text">Causal Intelligence</span>
+                </h1>
+
+                <p class="text-lg md:text-xl max-w-xl mx-auto mb-9">
+                    Unify fragmented data into a single operational model. Transform observability into
+                    actionable causality.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <button type="button" onclick="openModal()" class="btn btn-primary w-full sm:w-auto">
+                        Get started
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                    <a href="#about" class="btn btn-ghost w-full sm:w-auto">Learn more</a>
+                </div>
+
+                <p class="mt-6 text-sm text-[#6b8299]">
+                    Sits on top of your existing stack. No rip-and-replace.
+                </p>
+            </div>
+
+            <!--<div class="hero-visual hero-in" style="animation-delay:.15s">
+                <img src="Homescreen.png" alt="" width="819" height="813" aria-hidden="true">
+            </div>-->
+        </section>
+
+        <!-- ===================== METRIC STRIP ===================== -->
+        <section class="border-y border-white/[0.07] bg-white/[0.015]">
+            <div class="max-w-3xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.07]">
+                <div class="reveal py-8 sm:py-10 sm:px-8 text-center" data-motion="left">
+                    <div class="text-3xl md:text-4xl font-semibold tracking-tight text-white">70%</div>
+                    <div class="eyebrow mt-2">MTTR reduction</div>
+                </div>
+                <div class="reveal py-8 sm:py-10 sm:px-8 text-center" data-motion="right">
+                    <div class="text-3xl md:text-4xl font-semibold tracking-tight text-white">100%</div>
+                    <div class="eyebrow mt-2">Dependency visibility</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== PROBLEM / SOLUTION ===================== -->
+        <section id="about" class="px-6 py-24 md:py-32">
+            <div class="max-w-6xl mx-auto">
+                <div class="reveal max-w-2xl mb-14" data-motion="left">
+                    <h2 class="h2">Operations teams are drowning in signals, starved of causes.</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-5" data-reveal-group>
+                    <div class="card reveal p-8 md:p-10">
+                        <h3 class="h3 text-lg mb-7 text-white">The problem we solve</h3>
+                        <ul class="space-y-5">
+                            <li class="flex gap-3.5 items-start">
+                                <i class="fa-solid fa-circle-nodes text-[#0ce4ff] text-sm mt-1"></i>
+                                <span class="text-[#c3d2e0]">Siloed data tools and fragmented logs</span>
+                            </li>
+                            <li class="flex gap-3.5 items-start">
+                                <i class="fa-solid fa-circle-nodes text-[#0ce4ff] text-sm mt-1"></i>
+                                <span class="text-[#c3d2e0]">Distributed and inconsistent human knowledge</span>
+                            </li>
+                            <li class="flex gap-3.5 items-start">
+                                <i class="fa-solid fa-circle-nodes text-[#0ce4ff] text-sm mt-1"></i>
+                                <span class="text-[#c3d2e0]">Manual, error-prone root cause discovery</span>
+                            </li>
+                            <li class="flex gap-3.5 items-start">
+                                <i class="fa-solid fa-circle-nodes text-[#0ce4ff] text-sm mt-1"></i>
+                                <span class="text-[#c3d2e0]">Reactive tools with no change simulation</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card reveal p-8 md:p-10">
+                        <h3 class="h3 text-lg mb-5 text-white">The solution</h3>
+                        <p class="mb-7">
+                            Evolve from basic observability to <strong class="text-white font-medium">causal
+                                intelligence</strong> — a unified dependency model overlaid with live signals and
+                            continuous learning.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3">
+                                <i class="fa-solid fa-check text-[#0ce4ff] text-xs"></i>
+                                <span class="text-sm text-[#c3d2e0]">One live model of topology and telemetry</span>
+                            </div>
+                            <div class="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3">
+                                <i class="fa-solid fa-check text-[#0ce4ff] text-xs"></i>
+                                <span class="text-sm text-[#c3d2e0]">Evidence-backed cause, not pattern matching</span>
+                            </div>
+                            <div class="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3">
+                                <i class="fa-solid fa-check text-[#0ce4ff] text-xs"></i>
+                                <span class="text-sm text-[#c3d2e0]">Simulate change before it reaches production</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== PLATFORM CAPABILITIES ===================== -->
+        <section id="platform" class="px-6 pb-24 md:pb-32">
+            <div class="max-w-6xl mx-auto">
+                <div class="reveal max-w-2xl mb-14" data-motion="left">
+                    <h2 class="h2">Everything you need to reason about your estate.</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal-group>
+                    <div class="card reveal p-7">
+                        <div class="icon-tile mb-5"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <h3 class="h3 text-base mb-2.5 text-white">Root cause analysis</h3>
+                        <p class="text-sm">Evidence-backed reasoning with confidence scoring. Moves beyond pattern
+                            matching to explainable causality.</p>
+                    </div>
+
+                    <div class="card reveal p-7">
+                        <div class="icon-tile mb-5"><i class="fa-solid fa-flask"></i></div>
+                        <h3 class="h3 text-base mb-2.5 text-white">What-if simulation</h3>
+                        <p class="text-sm">Test how proposed changes, failures, load shifts, or migrations would affect
+                            your environment before making them in production.</p>
+                    </div>
+
+                    <div class="card reveal p-7">
+                        <div class="icon-tile mb-5"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3 class="h3 text-base mb-2.5 text-white">Predictive operations</h3>
+                        <p class="text-sm">Combine live signals, operational thresholds, and dependency data to forecast
+                            failures and determine their blast radius.</p>
+                    </div>
+
+                    <div class="card reveal p-7">
+                        <div class="icon-tile mb-5"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3 class="h3 text-base mb-2.5 text-white">Impact analysis</h3>
+                        <p class="text-sm">Real-time blast radius visualization. Identify upstream and downstream
+                            dependency paths instantly.</p>
+                    </div>
+
+                    <div class="card reveal p-7">
+                        <div class="icon-tile mb-5"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3 class="h3 text-base mb-2.5 text-white">Ask AI</h3>
+                        <p class="text-sm">Natural language interface to query root cause, impact, and system
+                            dependencies via LLM integration.</p>
+                    </div>
+
+                    <div class="card reveal p-7">
+                        <div class="icon-tile mb-5"><i class="fa-solid fa-briefcase"></i></div>
+                        <h3 class="h3 text-base mb-2.5 text-white">Business service intel</h3>
+                        <p class="text-sm">Mapping technical failures directly to business outcomes and critical
+                            customer service levels.</p>
+                    </div>
+
+                    <div class="card reveal p-7">
+                        <div class="icon-tile mb-5"><i class="fa-solid fa-database"></i></div>
+                        <h3 class="h3 text-base mb-2.5 text-white">Data quality intel</h3>
+                        <p class="text-sm">Continuous validation of CMDB, logs, and incident data to ensure a
+                            high-fidelity operational model.</p>
+                    </div>
+
+                    <div class="card reveal p-7">
+                        <div class="icon-tile mb-5"><i class="fa-solid fa-microchip"></i></div>
+                        <h3 class="h3 text-base mb-2.5 text-white">Unified model</h3>
+                        <p class="text-sm">A live, synchronized digital twin of your technology ecosystem combining
+                            topology and telemetry.</p>
+                    </div>
+
+                    <div class="card reveal p-7">
+                        <div class="icon-tile mb-5"><i class="fa-solid fa-layer-group"></i></div>
+                        <h3 class="h3 text-base mb-2.5 text-white">Zero-disruption integration</h3>
+                        <p class="text-sm">KEMS sits on top of your existing operational tools, adding intelligence
+                            without disrupting your stack.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== CTA ===================== -->
+        <section id="demo" class="px-6 pb-24 md:pb-32">
+            <div class="max-w-4xl mx-auto reveal relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] px-6 py-16 md:px-16 md:py-20 text-center">
+                <div class="glow-bg" style="top:-55%; height:520px;"></div>
+
+                <h2 class="h2 mb-5">Ready to transform?</h2>
+                <p class="max-w-lg mx-auto mb-9 text-base md:text-lg">
+                    Tell us about your environment and our team will be in touch within 24 hours.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
+                    <button type="button" onclick="openModal()" class="btn btn-primary w-full sm:w-auto">
+                        Book a demo
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                    <a href="mailto:sales@kemsai.co.uk" class="btn btn-ghost w-full sm:w-auto">Email sales</a>
+                </div>
+
+                <div id="contact"
+                    class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 pt-8 border-t border-white/[0.07]">
+                    <a href="mailto:sales@kemsai.co.uk"
+                        class="flex items-center gap-2.5 text-sm text-[#8ba0b4] hover:text-white transition-colors">
+                        <i class="fa-solid fa-envelope text-[#0ce4ff]"></i> sales@kemsai.co.uk
+                    </a>
+                    <a href="mailto:support@kemsai.co.uk"
+                        class="flex items-center gap-2.5 text-sm text-[#8ba0b4] hover:text-white transition-colors">
+                        <i class="fa-solid fa-headset text-[#0ce4ff]"></i> support@kemsai.co.uk
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="border-t border-white/[0.07] px-6 py-12">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <img src="KEMSLogo.png" alt="KEMS AI" width="440" height="151"
+                class="h-8 w-auto object-contain opacity-70">
+            <p class="text-xs text-[#6b8299] tracking-wide text-center sm:text-right">
+                © 2026 KEMS Artificial Intelligence · London, UK
+            </p>
+        </div>
     </footer>
-    <!-- Contact Modal -->
-    <div id="contactModal"
-        style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.8); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
-        <div
-            style="position:relative; width:90%; max-width:520px; background:#000D1A; border:1px solid rgba(0,229,255,0.2); border-radius:24px; overflow:hidden;">
-            <button onclick="closeModal()"
-                style="position:absolute; top:12px; right:16px; z-index:10; background:transparent; border:none; color:#00E5FF; font-size:22px; cursor:pointer;">✕</button>
-            <iframe id="ziframe_modal" aria-label="Contact Us"
+
+    <!-- ===================== CONTACT MODAL ===================== -->
+    <div id="contactModal" role="dialog" aria-modal="true" aria-label="Contact KEMS AI"
+        class="hidden fixed inset-0 z-[9999] items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="relative w-full max-w-[520px] rounded-2xl border border-white/12 bg-[#000c1a] overflow-hidden">
+            <button type="button" onclick="closeModal()" aria-label="Close contact form"
+                class="absolute top-2.5 right-2.5 z-10 grid place-items-center w-10 h-10 rounded-lg text-[#8ba0b4] hover:text-white hover:bg-white/5 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <iframe id="ziframe_modal" title="Contact Us" aria-label="Contact Us"
                 src="https://forms.zohopublic.eu/zohoadminkem1/form/ContactUs/formperma/xYEETpqH-7oqmK00g8P0jadAkj8wiELdaZoBUHPKCTw"
-                frameborder="0" style="width:100%; height:600px; display:block; border:none;">
+                frameborder="0" style="width:100%; height:600px; display:block; border:none; background:transparent;">
             </iframe>
         </div>
     </div>
-    <!-- Thank You Message (shown on main page after submission) -->
-    <div id="thankYouBanner"
-        style="display:none; position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
-        <div
-            style="text-align:center; padding:48px 40px; background:#000D1A; border:1px solid rgba(0,229,255,0.3); border-radius:24px; max-width:460px; width:90%;">
-            <div style="font-size:48px; margin-bottom:16px;">✅</div>
-            <h2 style="color:#00E5FF; font-size:26px; font-weight:900; margin-bottom:12px;">Message Received!</h2>
-            <p style="color:#CBD5E1; font-size:15px; line-height:1.7; margin-bottom:28px;">Thank you for reaching out to
-                KEMS AI. Our team will be in touch within 24 hours.</p>
-            <button onclick="closeThankyou()"
-                style="background:#00E5FF; color:#000D1A; border:none; padding:12px 32px; border-radius:12px; font-weight:900; font-size:15px; cursor:pointer;">
-                CLOSE
-            </button>
+
+    <!-- ===================== THANK YOU ===================== -->
+    <div id="thankYouBanner" role="dialog" aria-modal="true" aria-label="Message received"
+        class="hidden fixed inset-0 z-[9998] items-center justify-center bg-black/85 backdrop-blur-md p-4">
+        <div class="w-full max-w-[440px] rounded-2xl border border-[#0ce4ff]/25 bg-[#000c1a] px-8 py-12 text-center">
+            <div class="mx-auto mb-6 grid place-items-center w-14 h-14 rounded-full bg-[#0ce4ff]/10 border border-[#0ce4ff]/25">
+                <i class="fa-solid fa-check text-[#0ce4ff] text-xl"></i>
+            </div>
+            <h2 class="h3 text-2xl text-white mb-3">Message received</h2>
+            <p class="text-[0.9375rem] mb-8">Thank you for reaching out to KEMS AI. Our team will be in touch within
+                24 hours.</p>
+            <button type="button" onclick="closeThankyou()" class="btn btn-primary w-full">Close</button>
         </div>
     </div>
+
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
+        /* ---- Animated causal field ----
+           Nearby nodes form temporary links, echoing the dependency model
+           KEMS builds. The particle count is intentionally modest. */
+        (function () {
+            var canvas = document.getElementById('causalField');
+            var hero = document.getElementById('home');
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!canvas || !hero || reduceMotion) return;
 
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
+            var ctx = canvas.getContext('2d');
+            var nodes = [];
+            var frame = 0;
+            var pointer = { x: 0, y: 0, active: false };
+            var width = 0;
+            var height = 0;
 
-                if (elementTop < windowHeight - 100) {
-                    reveals[i].classList.add("active");
+            function makeNode() {
+                return {
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.18,
+                    vy: (Math.random() - 0.5) * 0.18,
+                    radius: Math.random() * 1.35 + 0.65,
+                    phase: Math.random() * Math.PI * 2
+                };
+            }
+
+            function resizeField() {
+                var rect = hero.getBoundingClientRect();
+                var ratio = Math.min(window.devicePixelRatio || 1, 2);
+                width = Math.max(1, rect.width);
+                height = Math.max(1, rect.height);
+                canvas.width = Math.round(width * ratio);
+                canvas.height = Math.round(height * ratio);
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
+                ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+                var count = width < 640 ? 18 : 34;
+                nodes = Array.from({ length: count }, makeNode);
+            }
+
+            function drawField(time) {
+                ctx.clearRect(0, 0, width, height);
+
+                nodes.forEach(function (node) {
+                    if (pointer.active) {
+                        var px = pointer.x - node.x;
+                        var py = pointer.y - node.y;
+                        var pd = Math.sqrt(px * px + py * py);
+                        if (pd < 180 && pd > 0) {
+                            node.x -= (px / pd) * 0.035;
+                            node.y -= (py / pd) * 0.035;
+                        }
+                    }
+
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    if (node.x < -20) node.x = width + 20;
+                    if (node.x > width + 20) node.x = -20;
+                    if (node.y < -20) node.y = height + 20;
+                    if (node.y > height + 20) node.y = -20;
+                });
+
+                for (var i = 0; i < nodes.length; i++) {
+                    for (var j = i + 1; j < nodes.length; j++) {
+                        var dx = nodes[i].x - nodes[j].x;
+                        var dy = nodes[i].y - nodes[j].y;
+                        var distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 155) {
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = 'rgba(12, 228, 255,' + ((1 - distance / 155) * 0.13) + ')';
+                            ctx.lineWidth = 0.8;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                nodes.forEach(function (node) {
+                    var pulse = 0.72 + Math.sin(time * 0.0012 + node.phase) * 0.28;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.radius + pulse * 0.45, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(12, 228, 255,' + (0.28 + pulse * 0.28) + ')';
+                    ctx.fill();
+                });
+
+                frame = requestAnimationFrame(drawField);
+            }
+
+            hero.addEventListener('pointermove', function (event) {
+                var rect = hero.getBoundingClientRect();
+                pointer.x = event.clientX - rect.left;
+                pointer.y = event.clientY - rect.top;
+                pointer.active = true;
+            });
+            hero.addEventListener('pointerleave', function () { pointer.active = false; });
+
+            var resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(resizeField, 150);
+            });
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    cancelAnimationFrame(frame);
+                } else {
+                    frame = requestAnimationFrame(drawField);
+                }
+            });
+
+            resizeField();
+            frame = requestAnimationFrame(drawField);
+        })();
+
+        /* ---- Pointer-led card light ----
+           The glow follows the cursor while the one-shot sheen provides the
+           quick flash on entry. CSS variables keep this paint-only. */
+        (function () {
+            if (!window.matchMedia('(hover: hover)').matches) return;
+            [].forEach.call(document.querySelectorAll('.card'), function (card) {
+                card.addEventListener('pointermove', function (event) {
+                    var rect = card.getBoundingClientRect();
+                    card.style.setProperty('--shine-x', (event.clientX - rect.left) + 'px');
+                    card.style.setProperty('--shine-y', (event.clientY - rect.top) + 'px');
+                });
+            });
+        })();
+
+        /* ---- Scroll reveal ----
+           A grid marked [data-reveal-group] resolves as one choreographed sweep
+           rather than each card fading in on its own schedule. */
+        (function () {
+            var motionPattern = ['left', 'scale', 'right', 'scale'];
+            [].forEach.call(document.querySelectorAll('.reveal'), function (el, i) {
+                if (!el.hasAttribute('data-motion')) {
+                    el.setAttribute('data-motion', motionPattern[i % motionPattern.length]);
+                }
+            });
+            var groups = [].slice.call(document.querySelectorAll('[data-reveal-group]'));
+            var singles = [].slice.call(document.querySelectorAll('.reveal')).filter(function (el) {
+                return !el.parentElement.hasAttribute('data-reveal-group');
+            });
+            var targets = groups.concat(singles);
+
+            function show(el) {
+                if (el.hasAttribute('data-reveal-group')) {
+                    [].forEach.call(el.children, function (child, i) {
+                        child.style.transitionDelay = (i * 55) + 'ms';
+                        child.classList.add('active');
+                    });
+                } else {
+                    el.classList.add('active');
                 }
             }
+
+            function reset(el) {
+                if (el.hasAttribute('data-reveal-group')) {
+                    [].forEach.call(el.children, function (child) {
+                        child.style.transitionDelay = '0ms';
+                        child.classList.remove('active');
+                    });
+                } else {
+                    el.classList.remove('active');
+                }
+            }
+
+            if (!('IntersectionObserver' in window)) {
+                targets.forEach(show);
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        show(entry.target);
+                    } else {
+                        reset(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -80px 0px', threshold: 0.05 });
+            targets.forEach(function (el) { io.observe(el); });
+        })();
+
+        /* ---- Mobile menu ---- */
+        function toggleMenu() {
+            var menu = document.getElementById('mobileMenu');
+            var btn = document.getElementById('menuBtn');
+            var icon = document.getElementById('menuIcon');
+            var open = menu.classList.toggle('hidden') === false;
+            btn.setAttribute('aria-expanded', String(open));
+            btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            icon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
         }
 
-        // Run on scroll
-        window.addEventListener("scroll", reveal);
+        function closeMenu() {
+            var menu = document.getElementById('mobileMenu');
+            if (!menu.classList.contains('hidden')) toggleMenu();
+        }
 
-        // Run once on page load
-        reveal();
-    </script>
-    <script>
+        /* ---- Modals ---- */
+        var lastFocused = null;
+
         function openModal() {
-            document.getElementById("contactModal").style.display = "flex";
+            lastFocused = document.activeElement;
+            var m = document.getElementById('contactModal');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            document.getElementById("contactModal").style.display = "none";
+            var m = document.getElementById('contactModal');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+            document.body.style.overflow = '';
+            if (lastFocused) lastFocused.focus();
         }
 
         function showThankyou() {
-            document.getElementById("thankYouBanner").style.display = "flex";
+            var m = document.getElementById('thankYouBanner');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeThankyou() {
-            document.getElementById("thankYouBanner").style.display = "none";
+            var m = document.getElementById('thankYouBanner');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+            document.body.style.overflow = '';
         }
 
-        document.getElementById("contactModal").addEventListener("click", function (e) {
+        document.getElementById('contactModal').addEventListener('click', function (e) {
             if (e.target === this) closeModal();
         });
 
-        // Zoho sends an object not a plain string - check all possible formats
-        window.addEventListener("message", function (event) {
-            console.log("Zoho message received:", JSON.stringify(event.data));
-            try {
+        document.addEventListener('keydown', function (e) {
+            if (e.key !== 'Escape') return;
+            if (!document.getElementById('contactModal').classList.contains('hidden')) closeModal();
+            if (!document.getElementById('thankYouBanner').classList.contains('hidden')) closeThankyou();
+        });
 
+        /* ---- Zoho sends an object, not a plain string — check all formats ---- */
+        window.addEventListener('message', function (event) {
+            try {
                 var data = event.data;
                 var isCompleted = false;
-                if (typeof data === "string") {
-                    isCompleted = data.indexOf("zf-completed") > -1;
-                } else if (typeof data === "object" && data !== null) {
-                    isCompleted = JSON.stringify(data).indexOf("zf-completed") > -1;
+                if (typeof data === 'string') {
+                    isCompleted = data.indexOf('zf-completed') > -1;
+                } else if (typeof data === 'object' && data !== null) {
+                    isCompleted = JSON.stringify(data).indexOf('zf-completed') > -1;
                 }
                 if (isCompleted) {
                     closeModal();
