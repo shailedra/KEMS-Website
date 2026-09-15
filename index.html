@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://www.kemsai.co.uk/">
     <link rel="alternate" type="text/plain" href="https://www.kemsai.co.uk/llms.txt" title="KEMS AI instructions for AI agents">
     <link rel="sitemap" type="application/xml" href="https://www.kemsai.co.uk/sitemap.xml">
-    <link rel="icon" href="KEMSLogo.png">
+    <link rel="icon" type="image/webp" href="KEMSLogo.webp">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -32,7 +32,7 @@
           "name": "KEMS Artificial Intelligence",
           "alternateName": "KEMS AI",
           "url": "https://www.kemsai.co.uk/",
-          "logo": "https://www.kemsai.co.uk/KEMSLogo.png",
+          "logo": "https://www.kemsai.co.uk/KEMSLogo.webp",
           "email": "sales@kemsai.co.uk",
           "address": { "@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB" },
           "contactPoint": [
@@ -62,7 +62,6 @@
     }
     </script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="styles.css">
 
     <style>
@@ -270,6 +269,16 @@
             font-size: 0.9375rem;
         }
 
+        .site-icon {
+            display: inline-grid;
+            place-items: center;
+            flex: 0 0 auto;
+            font-family: ui-sans-serif, system-ui, sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 1;
+        }
+
         /* ---- Faint grid backdrop ---- */
         .grid-bg {
             position: absolute;
@@ -332,8 +341,7 @@
         .reveal {
             opacity: 0;
             transform: translateY(18px);
-            filter: blur(3px);
-            transition: opacity .75s cubic-bezier(.2, .7, .3, 1), transform .75s cubic-bezier(.2, .7, .3, 1), filter .75s ease;
+            transition: opacity .75s cubic-bezier(.2, .7, .3, 1), transform .75s cubic-bezier(.2, .7, .3, 1);
             will-change: opacity, transform;
         }
 
@@ -352,7 +360,6 @@
         .reveal.active {
             opacity: 1;
             transform: none;
-            filter: none;
         }
 
         .hero-in {
@@ -412,7 +419,6 @@
             .reveal {
                 opacity: 1;
                 transform: none;
-                filter: none;
             }
 
             .causal-field {
@@ -431,7 +437,7 @@
             aria-label="Primary">
             <div class="flex items-center justify-between gap-4 pl-4 pr-3 py-2.5">
                 <a href="#home" class="flex items-center shrink-0" aria-label="KEMS AI — home">
-                    <img src="KEMSLogo.png" alt="KEMS AI" width="440" height="151"
+                    <img src="KEMSLogo.webp" alt="KEMS AI" width="210" height="72"
                         class="h-9 w-auto object-contain">
                 </a>
 
@@ -452,7 +458,7 @@
                 <button type="button" id="menuBtn" onclick="toggleMenu()" aria-expanded="false"
                     aria-controls="mobileMenu" aria-label="Open menu"
                     class="md:hidden grid place-items-center w-11 h-11 rounded-lg border border-white/15 text-white">
-                    <i class="fa-solid fa-bars" id="menuIcon"></i>
+                    <span class="site-icon text-xl" id="menuIcon" aria-hidden="true">≡</span>
                 </button>
             </div>
 
@@ -492,7 +498,7 @@
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
                     <button type="button" onclick="openModal()" class="btn btn-primary w-full sm:w-auto">
                         Get started
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                        <span class="site-icon text-xs" aria-hidden="true">→</span>
                     </button>
                     <a href="#about" class="btn btn-ghost w-full sm:w-auto">Learn more</a>
                 </div>
@@ -533,19 +539,19 @@
                         <h3 class="h3 text-lg mb-7 text-white">The problem we solve</h3>
                         <ul class="space-y-5">
                             <li class="flex gap-3.5 items-start">
-                                <i class="fa-solid fa-circle-nodes text-[#0ce4ff] text-sm mt-1"></i>
+                                <span class="site-icon text-[#0ce4ff] text-sm mt-1" aria-hidden="true">⬡</span>
                                 <span class="text-[#c3d2e0]">Siloed data tools and fragmented logs</span>
                             </li>
                             <li class="flex gap-3.5 items-start">
-                                <i class="fa-solid fa-circle-nodes text-[#0ce4ff] text-sm mt-1"></i>
+                                <span class="site-icon text-[#0ce4ff] text-sm mt-1" aria-hidden="true">⬡</span>
                                 <span class="text-[#c3d2e0]">Distributed and inconsistent human knowledge</span>
                             </li>
                             <li class="flex gap-3.5 items-start">
-                                <i class="fa-solid fa-circle-nodes text-[#0ce4ff] text-sm mt-1"></i>
+                                <span class="site-icon text-[#0ce4ff] text-sm mt-1" aria-hidden="true">⬡</span>
                                 <span class="text-[#c3d2e0]">Manual, error-prone root cause discovery</span>
                             </li>
                             <li class="flex gap-3.5 items-start">
-                                <i class="fa-solid fa-circle-nodes text-[#0ce4ff] text-sm mt-1"></i>
+                                <span class="site-icon text-[#0ce4ff] text-sm mt-1" aria-hidden="true">⬡</span>
                                 <span class="text-[#c3d2e0]">Reactive tools with no change simulation</span>
                             </li>
                         </ul>
@@ -560,15 +566,15 @@
                         </p>
                         <div class="space-y-3">
                             <div class="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3">
-                                <i class="fa-solid fa-check text-[#0ce4ff] text-xs"></i>
+                                <span class="site-icon text-[#0ce4ff] text-xs" aria-hidden="true">✓</span>
                                 <span class="text-sm text-[#c3d2e0]">One live model of topology and telemetry</span>
                             </div>
                             <div class="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3">
-                                <i class="fa-solid fa-check text-[#0ce4ff] text-xs"></i>
+                                <span class="site-icon text-[#0ce4ff] text-xs" aria-hidden="true">✓</span>
                                 <span class="text-sm text-[#c3d2e0]">Evidence-backed cause, not pattern matching</span>
                             </div>
                             <div class="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3">
-                                <i class="fa-solid fa-check text-[#0ce4ff] text-xs"></i>
+                                <span class="site-icon text-[#0ce4ff] text-xs" aria-hidden="true">✓</span>
                                 <span class="text-sm text-[#c3d2e0]">Simulate change before it reaches production</span>
                             </div>
                         </div>
@@ -586,63 +592,63 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal-group>
                     <div class="card reveal p-7">
-                        <div class="icon-tile mb-5"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <div class="icon-tile mb-5"><span class="site-icon" aria-hidden="true">⌕</span></div>
                         <h3 class="h3 text-base mb-2.5 text-white">Root cause analysis</h3>
                         <p class="text-sm">Evidence-backed reasoning with confidence scoring. Moves beyond pattern
                             matching to explainable causality.</p>
                     </div>
 
                     <div class="card reveal p-7">
-                        <div class="icon-tile mb-5"><i class="fa-solid fa-flask"></i></div>
+                        <div class="icon-tile mb-5"><span class="site-icon" aria-hidden="true">△</span></div>
                         <h3 class="h3 text-base mb-2.5 text-white">What-if simulation</h3>
                         <p class="text-sm">Test how proposed changes, failures, load shifts, or migrations would affect
                             your environment before making them in production.</p>
                     </div>
 
                     <div class="card reveal p-7">
-                        <div class="icon-tile mb-5"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="icon-tile mb-5"><span class="site-icon" aria-hidden="true">↗</span></div>
                         <h3 class="h3 text-base mb-2.5 text-white">Predictive operations</h3>
                         <p class="text-sm">Combine live signals, operational thresholds, and dependency data to forecast
                             failures and determine their blast radius.</p>
                     </div>
 
                     <div class="card reveal p-7">
-                        <div class="icon-tile mb-5"><i class="fa-solid fa-bullseye"></i></div>
+                        <div class="icon-tile mb-5"><span class="site-icon" aria-hidden="true">◎</span></div>
                         <h3 class="h3 text-base mb-2.5 text-white">Impact analysis</h3>
                         <p class="text-sm">Real-time blast radius visualization. Identify upstream and downstream
                             dependency paths instantly.</p>
                     </div>
 
                     <div class="card reveal p-7">
-                        <div class="icon-tile mb-5"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <div class="icon-tile mb-5"><span class="site-icon" aria-hidden="true">✦</span></div>
                         <h3 class="h3 text-base mb-2.5 text-white">Ask AI</h3>
                         <p class="text-sm">Natural language interface to query root cause, impact, and system
                             dependencies via LLM integration.</p>
                     </div>
 
                     <div class="card reveal p-7">
-                        <div class="icon-tile mb-5"><i class="fa-solid fa-briefcase"></i></div>
+                        <div class="icon-tile mb-5"><span class="site-icon" aria-hidden="true">▣</span></div>
                         <h3 class="h3 text-base mb-2.5 text-white">Business service intel</h3>
                         <p class="text-sm">Mapping technical failures directly to business outcomes and critical
                             customer service levels.</p>
                     </div>
 
                     <div class="card reveal p-7">
-                        <div class="icon-tile mb-5"><i class="fa-solid fa-database"></i></div>
+                        <div class="icon-tile mb-5"><span class="site-icon" aria-hidden="true">◫</span></div>
                         <h3 class="h3 text-base mb-2.5 text-white">Data quality intel</h3>
                         <p class="text-sm">Continuous validation of CMDB, logs, and incident data to ensure a
                             high-fidelity operational model.</p>
                     </div>
 
                     <div class="card reveal p-7">
-                        <div class="icon-tile mb-5"><i class="fa-solid fa-microchip"></i></div>
+                        <div class="icon-tile mb-5"><span class="site-icon" aria-hidden="true">◇</span></div>
                         <h3 class="h3 text-base mb-2.5 text-white">Unified model</h3>
                         <p class="text-sm">A live, synchronized digital twin of your technology ecosystem combining
                             topology and telemetry.</p>
                     </div>
 
                     <div class="card reveal p-7">
-                        <div class="icon-tile mb-5"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="icon-tile mb-5"><span class="site-icon" aria-hidden="true">≋</span></div>
                         <h3 class="h3 text-base mb-2.5 text-white">Zero-disruption integration</h3>
                         <p class="text-sm">KEMS sits on top of your existing operational tools, adding intelligence
                             without disrupting your stack.</p>
@@ -664,7 +670,7 @@
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
                     <button type="button" onclick="openModal()" class="btn btn-primary w-full sm:w-auto">
                         Book a demo
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                        <span class="site-icon text-xs" aria-hidden="true">→</span>
                     </button>
                     <a href="mailto:sales@kemsai.co.uk" class="btn btn-ghost w-full sm:w-auto">Email sales</a>
                 </div>
@@ -673,11 +679,11 @@
                     class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 pt-8 border-t border-white/[0.07]">
                     <a href="mailto:sales@kemsai.co.uk"
                         class="flex items-center gap-2.5 text-sm text-[#8ba0b4] hover:text-white transition-colors">
-                        <i class="fa-solid fa-envelope text-[#0ce4ff]"></i> sales@kemsai.co.uk
+                        <span class="site-icon text-[#0ce4ff]" aria-hidden="true">✉</span> sales@kemsai.co.uk
                     </a>
                     <a href="mailto:support@kemsai.co.uk"
                         class="flex items-center gap-2.5 text-sm text-[#8ba0b4] hover:text-white transition-colors">
-                        <i class="fa-solid fa-headset text-[#0ce4ff]"></i> support@kemsai.co.uk
+                        <span class="site-icon text-[#0ce4ff]" aria-hidden="true">◖</span> support@kemsai.co.uk
                     </a>
                 </div>
             </div>
@@ -687,7 +693,7 @@
     <!-- ===================== FOOTER ===================== -->
     <footer class="border-t border-white/[0.07] px-6 py-12">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-            <img src="KEMSLogo.png" alt="KEMS AI" width="440" height="151"
+            <img src="KEMSLogo.webp" alt="KEMS AI" width="210" height="72"
                 class="h-8 w-auto object-contain opacity-70">
             <p class="text-xs text-[#6b8299] tracking-wide text-center sm:text-right">
                 © 2026 KEMS Artificial Intelligence · London, UK · <a href="developers.html" class="hover:text-white transition-colors">Developers</a>
@@ -701,7 +707,7 @@
         <div class="relative w-full max-w-[520px] rounded-2xl border border-white/12 bg-[#000c1a] overflow-hidden">
             <button type="button" onclick="closeModal()" aria-label="Close contact form"
                 class="absolute top-2.5 right-2.5 z-10 grid place-items-center w-10 h-10 rounded-lg text-[#8ba0b4] hover:text-white hover:bg-white/5 transition-colors">
-                <i class="fa-solid fa-xmark text-lg"></i>
+                <span class="site-icon text-lg" aria-hidden="true">×</span>
             </button>
             <iframe id="ziframe_modal" title="Contact Us" aria-label="Contact Us"
                 data-src="https://forms.zohopublic.eu/zohoadminkem1/form/ContactUs/formperma/xYEETpqH-7oqmK00g8P0jadAkj8wiELdaZoBUHPKCTw"
@@ -715,7 +721,7 @@
         class="hidden fixed inset-0 z-[9998] items-center justify-center bg-black/85 backdrop-blur-md p-4">
         <div class="w-full max-w-[440px] rounded-2xl border border-[#0ce4ff]/25 bg-[#000c1a] px-8 py-12 text-center">
             <div class="mx-auto mb-6 grid place-items-center w-14 h-14 rounded-full bg-[#0ce4ff]/10 border border-[#0ce4ff]/25">
-                <i class="fa-solid fa-check text-[#0ce4ff] text-xl"></i>
+                <span class="site-icon text-[#0ce4ff] text-xl" aria-hidden="true">✓</span>
             </div>
             <h2 class="h3 text-2xl text-white mb-3">Message received</h2>
             <p class="text-[0.9375rem] mb-8">Thank you for reaching out to KEMS AI. Our team will be in touch within
@@ -917,7 +923,7 @@
             var open = menu.classList.toggle('hidden') === false;
             btn.setAttribute('aria-expanded', String(open));
             btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-            icon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+            icon.textContent = open ? '×' : '≡';
         }
 
         function closeMenu() {
