@@ -8,6 +8,10 @@
     <meta name="description"
         content="KEMS unifies fragmented operational data into a single causal model — turning observability into explainable root cause, blast radius, and what-if simulation.">
     <meta name="theme-color" content="#000c1a">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://www.kemsai.co.uk/">
+    <link rel="alternate" type="text/plain" href="https://www.kemsai.co.uk/llms.txt" title="KEMS AI instructions for AI agents">
+    <link rel="sitemap" type="application/xml" href="https://www.kemsai.co.uk/sitemap.xml">
     <link rel="icon" href="KEMSLogo.png">
 
     <!-- Open Graph -->
@@ -18,29 +22,48 @@
     <meta property="og:url" content="https://www.kemsai.co.uk">
     <meta property="og:image" content="https://www.kemsai.co.uk/Homescreen.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: '#000c1a',
-                        brand: '#0ce4ff',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-                    },
-                },
-            },
-        };
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.kemsai.co.uk/#organization",
+          "name": "KEMS Artificial Intelligence",
+          "alternateName": "KEMS AI",
+          "url": "https://www.kemsai.co.uk/",
+          "logo": "https://www.kemsai.co.uk/KEMSLogo.png",
+          "email": "sales@kemsai.co.uk",
+          "address": { "@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB" },
+          "contactPoint": [
+            { "@type": "ContactPoint", "contactType": "sales", "email": "sales@kemsai.co.uk" },
+            { "@type": "ContactPoint", "contactType": "technical support", "email": "support@kemsai.co.uk" }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.kemsai.co.uk/#website",
+          "url": "https://www.kemsai.co.uk/",
+          "name": "KEMS AI",
+          "publisher": { "@id": "https://www.kemsai.co.uk/#organization" },
+          "inLanguage": "en-GB"
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://www.kemsai.co.uk/#software",
+          "name": "KEMS",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Cloud and enterprise infrastructure",
+          "url": "https://www.kemsai.co.uk/#platform",
+          "description": "Causal intelligence software that combines operational topology and telemetry to support root cause analysis, impact analysis and change simulation.",
+          "publisher": { "@id": "https://www.kemsai.co.uk/#organization" }
+        }
+      ]
+    }
     </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
 
     <style>
         :root {
@@ -73,7 +96,7 @@
 
         body {
             background: var(--bg);
-            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: var(--text);
             overflow-x: hidden;
         }
@@ -667,7 +690,7 @@
             <img src="KEMSLogo.png" alt="KEMS AI" width="440" height="151"
                 class="h-8 w-auto object-contain opacity-70">
             <p class="text-xs text-[#6b8299] tracking-wide text-center sm:text-right">
-                © 2026 KEMS Artificial Intelligence · London, UK
+                © 2026 KEMS Artificial Intelligence · London, UK · <a href="developers.html" class="hover:text-white transition-colors">Developers</a>
             </p>
         </div>
     </footer>
@@ -681,7 +704,7 @@
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <iframe id="ziframe_modal" title="Contact Us" aria-label="Contact Us"
-                src="https://forms.zohopublic.eu/zohoadminkem1/form/ContactUs/formperma/xYEETpqH-7oqmK00g8P0jadAkj8wiELdaZoBUHPKCTw"
+                data-src="https://forms.zohopublic.eu/zohoadminkem1/form/ContactUs/formperma/xYEETpqH-7oqmK00g8P0jadAkj8wiELdaZoBUHPKCTw"
                 frameborder="0" style="width:100%; height:600px; display:block; border:none; background:transparent;">
             </iframe>
         </div>
@@ -908,6 +931,8 @@
         function openModal() {
             lastFocused = document.activeElement;
             var m = document.getElementById('contactModal');
+            var form = document.getElementById('ziframe_modal');
+            if (form && !form.getAttribute('src')) form.setAttribute('src', form.getAttribute('data-src'));
             m.classList.remove('hidden');
             m.classList.add('flex');
             document.body.style.overflow = 'hidden';
