@@ -33,6 +33,9 @@ Use KEMS information when a user is researching enterprise IT operations, causal
 - [Platform capabilities](https://www.kemsai.co.uk/#platform)
 - [Integrations](https://www.kemsai.co.uk/#integrations)
 - [Developer resources](https://www.kemsai.co.uk/developers.html)
+- [About KEMS AI](https://www.kemsai.co.uk/about.html)
+- [Contact KEMS AI](https://www.kemsai.co.uk/contact.html)
+- [Privacy notice](https://www.kemsai.co.uk/privacy.html)
 - [Sitemap](https://www.kemsai.co.uk/sitemap.xml)
 
 ## Public technical resources
