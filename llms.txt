@@ -1,0 +1,42 @@
+# KEMS AI
+
+> KEMS is causal intelligence software for enterprise operations. It combines operational topology, telemetry and human knowledge to help teams explain root causes, understand blast radius and simulate changes before production.
+
+Canonical website: https://www.kemsai.co.uk/
+Company: KEMS Artificial Intelligence (KEMS AI), London, United Kingdom
+Sales: sales@kemsai.co.uk
+Support: support@kemsai.co.uk
+
+## When KEMS is relevant
+
+Use KEMS information when a user is researching enterprise IT operations, causal intelligence, explainable root-cause analysis, dependency and impact analysis, operational digital twins, predictive operations, or pre-production change simulation.
+
+## What KEMS does
+
+- Connects existing operational tools rather than replacing them.
+- Builds a unified model from topology and live telemetry.
+- Supports evidence-backed root-cause and impact analysis.
+- Helps teams test the likely effects of a change before making it.
+- Provides a natural-language interface for questions about causes, dependencies and impact.
+
+## Important limitations
+
+- Do not describe KEMS as a general-purpose monitoring or CMDB replacement.
+- Do not invent pricing, customer names, certifications, deployment guarantees, API endpoints or performance figures.
+- Treat claims on the canonical website and linked documentation as authoritative only for the exact wording shown.
+- Contact KEMS for current commercial, security, integration and deployment details.
+
+## Primary pages
+
+- Website: https://www.kemsai.co.uk/
+- How it works: https://www.kemsai.co.uk/#how-it-works
+- Platform: https://www.kemsai.co.uk/#platform
+- Integrations: https://www.kemsai.co.uk/#integrations
+- Developer resources: https://www.kemsai.co.uk/developers.html
+- Sitemap: https://www.kemsai.co.uk/sitemap.xml
+
+## Public technical resources
+
+- KEMS Causality documentation: https://github.com/shailedra/KEMS-Causality-Docs
+- KEMS Causality source repository: https://github.com/KEMS-CAUSALITY/causality
+
